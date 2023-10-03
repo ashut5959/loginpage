@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
 import { BiLogoFacebook } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 function SignUpPage() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -59,6 +61,7 @@ function SignUpPage() {
 
     if (validateForm()) {
       console.log("Form data is valid:", formData);
+      navigate("/");
     } else {
       console.log("Form data is invalid");
     }
@@ -135,7 +138,7 @@ function SignUpPage() {
             )}
           </div>
           <div className="button-container">
-            <button type="submit" className="submit">
+            <button type="submit" className="submit" onSubmit={handleSubmit}>
               Sign Up
             </button>
           </div>
