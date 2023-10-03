@@ -1,28 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import LoginPage from './components/loginPage'
+import React from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import LoginForm from './components/loginPage';
+import ForgetPage from './components/forgetPage';
+import SignUpPage from './components/signPage';
 
 const App = () => {
-  const [startColor, setStartColor] = useState('bg-gradient-to-b from-red-400 via-yellow-400 to-green-400');
-  const [endColor, setEndColor] = useState('bg-gradient-to-b from-pink-400 via-purple-400 to-indigo-400');
-
-  
-  const updateGradientColors = () => {
-
-    const gradientClasses1 = 'bg-gradient-to-b from-red-400 via-yellow-400 to-green-400';
-    const gradientClasses2 = 'bg-gradient-to-b from-pink-400 via-purple-400 to-indigo-400';
-
-    setStartColor(gradientClasses1);
-    setEndColor(gradientClasses2);
-  };
-
-  useEffect(() => {
-    const interval = setInterval(updateGradientColors, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
   return (
     <div className={`bg-gradient-to-r from-orange-100`}>
-      <LoginPage/>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/"  element = {<LoginForm/>}/>
+        <Route path="/forget"  element = {<ForgetPage/>}/>
+        <Route path="/signup"  element = {<SignUpPage/>}/>
+      </Routes>
+    </BrowserRouter>
     </div>
   )
 }
